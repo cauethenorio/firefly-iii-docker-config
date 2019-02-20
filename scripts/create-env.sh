@@ -11,7 +11,7 @@ if [ ! -f ${TARGET_FILE} ]; then
   read -p "Enter your mailgun key: " MAILGUN_SECRET
   read -p "Enter your mapbox API: " MAPBOX_API_KEY
 
-  perl -pi -e "s/\[APP_KEY\]/$(base64 /dev/urandom | head -c 128|md5)/g" ${TARGET_FILE}
+  perl -pi -e "s/\[APP_KEY\]/$(base64 /dev/urandom | tr -d '+/\r\n' | head -c 32)/g" ${TARGET_FILE}
   perl -pi -e "s/\[SITE_OWNER\]/${SITE_OWNER}/g" ${TARGET_FILE}
   perl -pi -e "s/\[MAILGUN_DOMAIN\]/${MAILGUN_DOMAIN}/g" ${TARGET_FILE}
   perl -pi -e "s/\[MAILGUN_SECRET\]/${MAILGUN_SECRET}/g" ${TARGET_FILE}
