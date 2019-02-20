@@ -1,0 +1,25 @@
+version: "3.2"
+
+services:
+  app:
+    image:
+      jc5x/firefly-iii
+    env_file:
+      - .env
+    ports:
+      - "7090:80"
+    volumes:
+      - ./generated_data/export:/var/www/firefly-iii/storage/export
+      - ./generated_data/upload:/var/www/firefly-iii/storage/upload
+    depends_on:
+      - db
+
+  db:
+    image:
+      postgres:10
+    environment:
+      - POSTGRES_PASSWORD=firefly
+      - POSTGRES_USER=firefly
+    volumes:
+      - ./generated_data/db:/var/lib/postgresql/data
+      - ./scripts:/scripts
