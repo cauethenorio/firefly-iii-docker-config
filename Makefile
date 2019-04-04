@@ -22,3 +22,6 @@ log:
 	@docker-compose logs -f
 
 reload: down up log
+
+reset:
+	@./scripts/reset.sh
