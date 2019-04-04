@@ -10,5 +10,5 @@ fi
 touch ".app-env"
 make down
 
-rm -Rf .app-env generated_data
+rm -Rf .{app-,}env generated_data
 echo "All clear."
