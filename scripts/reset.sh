@@ -4,6 +4,7 @@ read -p "This is will ERASE ALL YOUR DATA. Are you sure? [y/n]: " CONFIRM
 
 if [ "${CONFIRM,,}" != "y" ]; then
     echo >&2 "Aborted."
+    exit
 fi
 
 touch ".app-env"
