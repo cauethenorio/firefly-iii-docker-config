@@ -22,5 +22,5 @@ fi
 make reset
 
 tar xzf "./backups/${BACKUP_FILE}"
-mv "./generated_data/.app-env" .
+mv ./generated_data/.{app-,}env .
 make up
