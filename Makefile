@@ -25,3 +25,7 @@ reload: down up log
 
 reset:
 	@./scripts/reset.sh
+
+backup: down
+	@./scripts/backup.sh
+
