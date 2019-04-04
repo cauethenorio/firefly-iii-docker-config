@@ -1,4 +1,4 @@
-.PHONY: up down build log reload
+.PHONY: up down build log reload reset backup restore-backup update-images
 
 up: .app-env
 	@docker-compose up -d
@@ -33,3 +33,6 @@ backup:
 
 restore-backup:
 	@BACKUP_FILE=$(file) ./scripts/restore-backup.sh
+
+update-images: backup
+	@./scripts/update-images.sh
