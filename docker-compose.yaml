@@ -13,6 +13,8 @@ services:
       - ./generated_data/upload:/var/www/firefly-iii/storage/upload
     depends_on:
       - db
+    restart:
+      unless-stopped
 
   db:
     image:
@@ -23,3 +25,5 @@ services:
     volumes:
       - ./generated_data/db:/var/lib/postgresql/data
       - ./scripts:/scripts
+    restart:
+      unless-stopped
