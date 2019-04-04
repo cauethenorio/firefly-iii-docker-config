@@ -13,10 +13,12 @@ fi
 
 echo "Creating..."
 
-./scripts/save-images-digests.sh
+cp ".env" ./generated_data
 
 mkdir -p ./backups
 tar czf ${TARGET} ./generated_data
+
+rm "./generated_data/.env"
 
 echo "Created: ${TARGET}"
 

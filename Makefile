@@ -9,6 +9,8 @@ up: .env
 	@docker-compose exec app php artisan firefly:verify
 	@docker-compose exec app php artisan cache:clear
 
+	@./scripts/lock-images-digests.sh
+
 .env:
 	@./scripts/create-env.sh
 
@@ -28,3 +30,6 @@ reset:
 
 backup:
 	@./scripts/backup.sh
+
+restore-backup:
+	@BACKUP_FILE=$(file) ./scripts/restore-backup.sh

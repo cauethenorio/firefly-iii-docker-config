@@ -3,7 +3,7 @@ version: "3.2"
 services:
   app:
     image:
-      jc5x/firefly-iii
+      "${LOCKED_APP_IMAGE_DIGEST:-jc5x/firefly-iii:latest}"
     env_file:
       - .env
     ports:
@@ -18,7 +18,7 @@ services:
 
   db:
     image:
-      postgres:10
+      "${LOCKED_DB_IMAGE_DIGEST:-postgres:10}"
     environment:
       - POSTGRES_PASSWORD=firefly
       - POSTGRES_USER=firefly
