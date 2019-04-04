@@ -8,7 +8,7 @@ TARGET="./backups/firefly-data-backup-${NOW}.tar.gz"
 RUNNING_CONTAINERS=$(echo $(docker-compose ps -q | wc -l))
 
 if (( $RUNNING_CONTAINERS > 0 )); then
-  make down
+  docker-compose stop
 fi
 
 echo "Creating..."
@@ -23,5 +23,5 @@ rm "./generated_data/.app-env"
 echo "Created: ${TARGET}"
 
 if (( $RUNNING_CONTAINERS > 0 )); then
-  make up
+  docker-compose start
 fi
