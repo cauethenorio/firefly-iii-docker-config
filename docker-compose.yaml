@@ -5,7 +5,7 @@ services:
     image:
       "${LOCKED_APP_IMAGE_DIGEST:-jc5x/firefly-iii:latest}"
     env_file:
-      - .env
+      - .app-env
     ports:
       - "7090:80"
     volumes:

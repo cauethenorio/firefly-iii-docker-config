@@ -1,6 +1,6 @@
 .PHONY: up down build log reload
 
-up: .env
+up: .app-env
 	@docker-compose up -d
 	@docker-compose exec db bash /scripts/wait-for-postgres.sh
 
@@ -11,8 +11,8 @@ up: .env
 
 	@./scripts/lock-images-digests.sh
 
-.env:
-	@./scripts/create-env.sh
+.app-env:
+	@./scripts/create-app-env.sh
 
 down:
 	@docker-compose down

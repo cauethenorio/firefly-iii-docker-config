@@ -13,12 +13,12 @@ fi
 
 echo "Creating..."
 
-cp ".env" ./generated_data
+cp ".app-env" ./generated_data
 
 mkdir -p ./backups
 tar czf ${TARGET} ./generated_data
 
-rm "./generated_data/.env"
+rm "./generated_data/.app-env"
 
 echo "Created: ${TARGET}"
 

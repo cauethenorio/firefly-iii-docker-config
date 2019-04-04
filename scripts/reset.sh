@@ -6,8 +6,8 @@ if [ "${CONFIRM,,}" != "y" ]; then
     echo >&2 "Aborted."
 fi
 
-touch ".env"
+touch ".app-env"
 make down
 
-rm -Rf .env generated_data
+rm -Rf .app-env generated_data
 echo "All clear."

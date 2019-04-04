@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-TARGET_FILE=".env"
+TARGET_FILE=".app-env"
 
 if [ ! -f ${TARGET_FILE} ]; then
   cp ./conf/${TARGET_FILE}.template ${TARGET_FILE}
