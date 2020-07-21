@@ -6,24 +6,36 @@ services:
       "${LOCKED_APP_IMAGE_DIGEST:-jc5x/firefly-iii:latest}"
     env_file:
       - .app-env
-    ports:
-      - "7090:80"
     volumes:
       - ./generated_data/export:/var/www/firefly-iii/storage/export
       - ./generated_data/upload:/var/www/firefly-iii/storage/upload
+      - ./generated_data/firefly-cache:/var/www/.composer/cache
     depends_on:
       - db
+    environment:
+      - VIRTUAL_PORT=8080
+    networks:
+      - internal
+      - nginx-gateway
     restart:
       unless-stopped
 
   db:
     image:
-      "${LOCKED_DB_IMAGE_DIGEST:-postgres:10}"
+      postgres:13-alpine
     environment:
       - POSTGRES_PASSWORD=firefly
       - POSTGRES_USER=firefly
     volumes:
       - ./generated_data/db:/var/lib/postgresql/data
       - ./scripts:/scripts
+    networks:
+      - internal
     restart:
       unless-stopped
+
+networks:
+    internal:
+    nginx-gateway:
+        external:
+            name: nginx-gateway

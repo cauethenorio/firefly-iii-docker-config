@@ -2,9 +2,17 @@
 
 Put your Firefly III instance online with a couple of commands
 
-["Firefly III"](https://firefly-iii.org/) is a (self-hosted) manager for your personal finances. It can help you keep track of your expenses and income, so you can spend less and save more. Firefly III supports the use of budgets, categories and tags. It can import data from external sources and it has many neat financial reports available. Here are some screenshots:
+["Firefly III"](https://firefly-iii.org/) is a (self-hosted) manager for your
+personal finances. It can help you keep track of your expenses and income,
+so you can spend less and save more.
 
-This repo is deploy-ready Docker config which will help you to deploy your own Firefly III instance and save your money.
+Firefly III supports the use of budgets, categories and tags. It can import
+data from external sources and it has many neat financial reports available.
+
+Here are some screenshots:
+
+This repo is deploy-ready Docker config which will help you to deploy your
+own Firefly III instance and save your money.
 
 
 Steps:

@@ -6,14 +6,18 @@ if [ ! -f ${TARGET_FILE} ]; then
   cp ./conf/${TARGET_FILE}.template ${TARGET_FILE}
 
   read -p "Enter your email address: " SITE_OWNER
-  SITE_OWNER=${SITE_OWNER/@/\\@} # escape the @ or perl will mess with it
-  read -p "Enter your mailgun domain: " MAILGUN_DOMAIN
-  read -p "Enter your mailgun key: " MAILGUN_SECRET
-  read -p "Enter your mapbox API: " MAPBOX_API_KEY
+  export SITE_OWNER
+  read -p "Enter the app domain: " APP_DOMAIN
+  export APP_DOMAIN
+  read -p "Default language (en_US will be used if empty): " LANGUAGE
+  export LANGUAGE=${LANGUAGE:-en_US}
+  read -p "Your timezone (example: America/Sao_Paulo): " TIMEZONE
+  export TIMEZONE
 
-  perl -pi -e "s/\[APP_KEY\]/$(base64 /dev/urandom | tr -d '+/\r\n' | head -c 32)/g" ${TARGET_FILE}
-  perl -pi -e "s/\[SITE_OWNER\]/${SITE_OWNER}/g" ${TARGET_FILE}
-  perl -pi -e "s/\[MAILGUN_DOMAIN\]/${MAILGUN_DOMAIN}/g" ${TARGET_FILE}
-  perl -pi -e "s/\[MAILGUN_SECRET\]/${MAILGUN_SECRET}/g" ${TARGET_FILE}
-  perl -pi -e "s/\[MAPBOX_API_KEY\]/${MAPBOX_API_KEY}/g" ${TARGET_FILE}
+  export APP_KEY="$(base64 /dev/urandom | tr -d '+/\r\n' | head -c 32)"
+  perl -pi -e 's/\[APP_KEY\]/$ENV{APP_KEY}/g' ${TARGET_FILE}
+  perl -pi -e 's/\[SITE_OWNER\]/$ENV{SITE_OWNER}/g' ${TARGET_FILE}
+  perl -pi -e 's/\[APP_DOMAIN\]/$ENV{APP_DOMAIN}/g' ${TARGET_FILE}
+  perl -pi -e 's/\[LANGUAGE\]/$ENV{LANGUAGE}/g' ${TARGET_FILE}
+  perl -pi -e 's/\[TIMEZONE\]/$ENV{TIMEZONE}/g' ${TARGET_FILE}
 fi

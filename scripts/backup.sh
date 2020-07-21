@@ -14,6 +14,7 @@ fi
 echo "Creating..."
 
 cp .{app-,}env ./generated_data
+rm -Rf ./generated_data/firefly-cache
 
 mkdir -p ./backups
 tar czf ${TARGET} ./generated_data

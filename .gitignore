@@ -2,5 +2,4 @@
 .env
 .idea
 generated_data
-certbot-auto
 backups

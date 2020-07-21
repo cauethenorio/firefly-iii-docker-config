@@ -2,14 +2,8 @@
 
 up: .app-env
 	@docker-compose up -d
-	@docker-compose exec db bash /scripts/wait-for-postgres.sh
-
-	@docker-compose exec app php artisan migrate --seed
-	@docker-compose exec app php artisan firefly:upgrade-database
-	@docker-compose exec app php artisan firefly:verify
-	@docker-compose exec app php artisan cache:clear
-
 	@./scripts/lock-images-digests.sh
+	@docker-compose logs -f
 
 .app-env:
 	@./scripts/create-app-env.sh
